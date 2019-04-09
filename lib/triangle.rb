@@ -1,32 +1,32 @@
 class Triangle
   # write code here
-  attr_accessor :side_one, :side_two, :side_three, :s_one_two_length, :s_two_three_length, :s_one_three_length
+  attr_accessor :s_1, :s_2, :s_3, :s_1_2_length, :s_2_3_length, :s_1_3_length
 
-  def initialize(side_one, side_two, side_three)
-  	@side_one = side_one
-  	@side_two = side_two
-  	@side_three = side_three
-  	@s_one_two_length = self.side_one + self.side_two
-  	@s_two_three_length = self.side_two + self.side_three
-  	@s_one_three_length = self.side_one + self.side_three
+  def initialize(s_1, s_2, s_3)
+  	@s_1 = s_1
+  	@s_2 = s_2
+  	@s_3 = s_3
+  	@s_1_2_length = self.s_1 + self.s_2
+  	@s_2_3_length = self.s_2 + self.s_3
+  	@s_1_3_length = self.s_1 + self.s_3
   end
 
   def check_valid
-  	(self.side_one > 0 && self.side_two > 0 && self.side_three > 0) && (self.s_one_three_length > self.side_two && self.s_one_two_length > self.side_three && self.s_two_three_length > self.side_one)
+  	(self.s_1 > 0 && self.s_2 > 0 && self.s_3 > 0) && (self.s_1_3_length > self.s_2 && self.s_1_2_length > self.s_3 && self.s_2_3_length > self.s_1)
   end 
 
   def kind
 
   	if check_valid == false
   		raise TriangleError
-  	elsif (self.side_one == self.side_two) && (self.side_two == self.side_three) && (self.side_one == self.side_three)
+  	elsif (self.s_1 == self.s_2) && (self.s_2 == self.s_3) && (self.s_1 == self.s_3)
   		:equilateral
-  	elsif (self.side_one == self.side_two) || (self.side_two == self.side_three) || (self.side_one == self.side_three)
+  	elsif (self.s_1 == self.s_2) || (self.s_2 == self.s_3) || (self.s_1 == self.s_3)
   		:isosceles
   	else
   		:scalene
   	end 
-  	
+
   end
 
   class TriangleError < StandardError
